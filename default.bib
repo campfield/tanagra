@@ -1,0 +1,51 @@
+%
+%  This is the top-level bibliography entry BibTex file.  All sources/subjects/projects will have access to these
+%    items for use in building their citation list as it is at the topmost level.
+%
+
+%
+% I use https://www.bibme.org/bibtex for almost automagical generation of bibtex-style entries as it allows
+%   me to use ISBN, URLs, etc and populates the bulk of data (when possible).
+%
+@book{
+  american-psychological-association-2021,
+    author = {{American Psychological Association}},
+    date = {2021},
+    edition = {17th},
+    language = {american},
+    publisher = {hyun-am},
+    title = {[Official guide to APA style][Publication Manual of the American Psychological Association: 7th Edition](9781433832161)},
+}
+
+
+
+% PDF source online
+%   Note on this, for the PDF title the publisher= is not the source of the publisher - it is the just extended title field
+%
+@misc{
+  catholi_kramarek_gaunt_2021,
+    title={\textit{Catholic Priests’ Formation in the United States: Statistical Overview} {Center for Applied Research in the Apostolate}},
+    url={https://cara.georgetown.edu/PriestFormation2021.pdf},
+    publisher={Center for Applied Research in the Apostolate},
+    author={Kramarek, Michal J and Gaunt, Thomas P},
+    year={2021},
+    month={Aug}
+}
+
+%
+% Note in the title= there are two levels of curly braces: {{}}.
+%  in this case, without the inner set of braces the title
+%  of the entry, once rendered in our final document, would have the
+%  capitalization changed to "The book of the subgenius: The sacred teachings of j.r. ’bob’ dobbs."
+% Individidual capitalization of specific words can be preserved by encasing them in their own set
+%  of curly braces.  as to preserve the capitalization of the name we can use
+%  {J.R. 'Bob' Dobbs}, {J.R.} {'Bob' Dobbs}.
+
+@BOOK{
+  dobbs_1987,
+    place={New York},
+    title={{The Book of the SubGenius: The Sacred Teachings of J.R. 'Bob' Dobbs}},
+    publisher={Simon \& Schuster},
+    author={Dobbs, J. R.},
+    year={1987}
+}

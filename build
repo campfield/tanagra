@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#
+# Very simple shorthand script for performing the generation
+#   commands for compiling the default document.
+#
+
+SCRIPT_LOCATION=$(dirname $0)
+
+
+if [[ -z $1 ]]; then
+  FNAME='default'
+else
+  FNAME=$1
+fi
+
+#
+# In order to build indexes, bibliographies, etc the build items must
+#   be run several times to output the correct build data pieces that
+#   other softwares (below) can read and update.
+#
+pdflatex $FNAME
+biber $FNAME
+pdflatex $FNAME.tex
+makeindex $FNAME.idx
+pdflatex $FNAME.tex
+
+
+#
+# This is just calling evince, a PDF reader, so I can view the final output.
+#
+if [[ -f $SCRIPT_LOCATION/$FNAME.pdf ]] && [[ ! -z $(which evince 2>/dev/null) ]]; then
+  evince $SCRIPT_LOCATION/$FNAME.pdf &
+fi

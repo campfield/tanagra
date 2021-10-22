@@ -1,0 +1,54 @@
+%
+% Outside of the toplevel default.tex which contains the document
+%  outer wrapper this is the actual location of the bulk of the
+%  document content.
+%
+
+%
+% Import the author information for the project
+%
+\subimport{.}{authors}
+
+%
+% Import the authors' notes unless it is a student document
+%  where authors are not required
+% For student papers, author notes are not required
+%
+\ifthenelse{\equal{\documentmode}{stu}}{}{\subimport{.}{author-note}}
+
+\title{\fulltitle}
+
+% shorttitle places an upper case text header to the upper left of each page.
+%  This should be an abreviated paper title of no more than 50 characters.
+%   Leaving this as a { } - note the space the short title will be ignored.
+%
+\ifthenelse{\equal{\documentmode}{stu}}{}{\shorttitle{\substring{\fulltitle}{1}{50}}}
+
+
+%
+% The \maketitle creates the front matter as described above, the title
+%  page, abstract, author information, etc
+%
+\ifthenelse{\equal{\titlegen}{true}}{\maketitle}
+
+\subimport{.}{abstract}
+%
+% Document keywords that will be displayed in the paper.
+%
+\keywords{\dockeywords}
+\subimport{chapters}{sections}
+\subimport{chapters}{characters}
+\subimport{chapters}{citations}
+\subimport{chapters}{counters}
+\subimport{chapters}{enumeration}
+\subimport{chapters}{figures}
+\subimport{chapters}{tables}
+\subimport{chapters}{odds-and-ends}
+
+%
+% The newpage does exactly what it says it forces a pagebreak.
+%  This is keen for taking care of final "beautification."
+%
+\newpage
+
+

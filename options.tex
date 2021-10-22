@@ -1,0 +1,173 @@
+%
+%
+% VARIABLES AND SETTINGS
+%
+%
+%
+%  The \newcommand{\nameofcommand} is a LaTeX workhorse with many features/uses.
+%    For a particular command you can only call \newcommand once, if you attempt to
+%    define the same command with \newcommand anywhere in your document's components, LaTeX will error out.
+%    The proper way to redifine commands is to use \renewcommand{\nameofcommand}.
+%    However, to use \renewcommand you have to create the original command with \newcommand.
+%
+%  In this section, I'm using \newcommand to initialize a lot of variables, so to set my email for a university project
+%    I could use \newcommand{\authoremail}{campfield@example.edu}.  However, if I'd want to set
+%    it to a personal .com email I'd use \newcommand{\authoremail}{campfield@example.com}.
+%    This gets annoying with having to comment in and out different entries of \newcommand.  So, I define
+%    all of the options used in this specific file (and some used in other files but common to the APA7 doc requirements)
+%    by setting \newcommands with empty values.
+%    That way, any time below this initial variable creation I can simply use \renewcommand and thus when I want
+%    to quickly swap values (such as what class I'm writing a paper for) I can just switch the line numbers
+%    for \renewcommand{\subjectid}{LIS-S301} and \newcommand{\subjectid}{LIS-S550}.
+%
+%  Now, do not attempt to set all initial \newcommand entries for all of your variables that you will ever use in your
+%    documents here.  This will cause this part of the document to be filled with junk variables that will
+%    never be used across documents and can never be deleted because you will go "I can't delete this variable as
+%    it may be used in some document I've not touched recently."  Put your variables in the options.tex files at the
+%    correct levels (global (this document), source, subject, and project.  Now, you see any variables set here that don't
+%    seem like they belong at the global level, I'm writing the project so I don't have to follow my own rules.
+%
+%
+\newcommand{\authorname}{}
+\newcommand{\authoremail}{}
+\newcommand{\babelargs}{}
+\newcommand{\biblatexoptions}{}
+\newcommand{\bibliogen}{}
+\newcommand{\subjectid}{}
+\newcommand{\datetimeargs}{}
+\newcommand{\dockeywords}{}
+\newcommand{\documentclassoptions}{}
+\newcommand{\documentmode}{}
+\newcommand{\email}{}
+\newcommand{\fillinline}{}
+\newcommand{\fulltitle}{}
+\newcommand{\indexgen}{}
+\newcommand{\libshort}{}
+\newcommand{\listfiggen}{}
+\newcommand{\projectid}{}
+\newcommand{\sectionheader}{}
+\newcommand{\sourceid}{}
+\newcommand{\titlegen}{}
+
+
+% For documents involving a single author (such as most student works), lets set a
+%   that author's name at the top so we can use it everywhere and only override it
+%   as necessary.  For this example, lets pick someone notable in the community.
+\renewcommand{\authorname}{Michael P. Campfield}
+
+%
+% Show us first defining documents under our project sources.
+%
+\renewcommand{\sourceid}{sources/projects}
+\renewcommand{\subjectid}{research}
+\renewcommand{\projectid}{readers-advisory-cataloging}
+
+% Swap out our previous sourcid++ to build this project's
+%   documents
+\renewcommand{\sourceid}{sources/tanagra}
+\renewcommand{\subjectid}{open-source}
+\renewcommand{\projectid}{latex-reference}
+
+
+%\renewcommand{\sourceid}{sources/lis}
+%\renewcommand{\subjectid}{s503-organization}
+%\renewcommand{\projectid}{4-resource-retreival}
+
+
+% the following variable sets the document's overall style.  The general format and features
+%   the document possesses (dual column, abstract pages, double vs. single spacing, etc)
+% jou - APA journal article format
+% man - formatted for submission to a journal
+% stu - student document format
+% doc - standard document
+\renewcommand{\documentmode}{jou}
+\renewcommand{\documentmode}{man}
+\renewcommand{\documentmode}{doc}
+%\renewcommand{\documentmode}{stu}
+
+%
+% If indexgen is 'true' (no quotes) then call \printindex
+%  will be called to create an index at the end of the document.
+%
+\renewcommand{\indexgen}{false}
+
+%
+% If bibliogen is 'true' (no quotes) then call \printbibliography
+%  will be called to create an index at the end of the document.
+%
+\renewcommand{\bibliogen}{true}
+
+%
+% If listocoffiguresgen is set (default is in options.tex) then add the list of figures option
+%
+\renewcommand{\listfiggen}{false}
+\renewcommand{\babelargs}{american}
+\renewcommand{\datetimeargs}{datesep=/,style=iso}
+
+%
+% true/false - should we generate the title material (front-end matter)
+%
+\renewcommand{\titlegen}{true}
+
+%
+% Set a command that sets up a section header (not just \section) but includes the number of the section and increment
+%   the value of the counter
+%
+\renewcommand{\sectionheader}[1]{\stepcounter{countersection}\section{Section \arabic{countersection}: #1}}
+
+%
+% Here we set several of the document style options such as font size.
+%  the full list of these options can be found in the
+%  package document PDF here: https://ctan.org/pkg/apa7
+%
+
+%
+% It is important to note that the 'draft' option disables in-document
+%  hyperlinking for PDF-style files but ALSO disable images from being packaged
+%  into the final document.
+% floatsintext instructs LaTeX to render tables and graphics within the
+%  text instead at the end sections of the document.
+%
+\renewcommand{\documentclassoptions}{\documentmode,10pt,floatsintext,makeidx}
+
+%
+% BibLaTeX is a formatting tool for automagically processing
+%  various forms of citations in a clean and portable manner.
+%  We set the this as a variable for later use as a text
+%  string in our document and when calling
+%  \usepackage[\biblatexoptions]{biblatex} in the packages.tex
+%  document.
+%
+\renewcommand{\biblatexoptions}{style=apa,backend=biber}
+
+%
+% \fillinline is a command for creating underlined text fields
+%   where the text content is easily switched from visible to hidden (defaults to hidden)
+%   but for the length of the text passed, hidden text or not, an underline section
+%   will be present.
+% If any value that is not 'hidden' is passed to the command, the text as argument #2 will
+%   be visible, else not.
+%   So:
+%     \fillinline{springboard} will produce a string of 11 of underscores
+%     \fillinline[]{springboard} will produce the underlined string 'springboard'
+%
+\renewcommand{\fillinline}[2][hidden]{\ifthenelse{\equal{#1}{hidden}}{\underline{\phantom{#2}}}{\underline{#2}}}
+
+
+% Little command for quickly inserting a small block of libsum into the document that rolls forward
+\newcounter{counterlibsum}
+\setcounter{counterlibsum}{1}
+\renewcommand{\libshort}{\lipsum[\arabic{counterlibsum}][1-10]\stepcounter{counterlibsum}}
+
+%
+% Setup for hyperlinks/URLs in documents that support them (e.g., PDF).
+%
+%
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=blue,
+%    filecolor=magenta,
+%    urlcolor=cyan,
+%    pdftitle={Overleaf Example},
+%    pdfpagemode=FullScreen,
+%}

@@ -1,0 +1,134 @@
+
+
+% This document is built around the LaTeX APA7 documentclass.  This sets a series of
+%  default values, enables sets of options and commands, gives access to typographic
+%  features and functions, and assists with citation mechanisms, index generation, and
+%  ensuring that we (the authors) don't forget all the necessary bits for our core
+%  APA7 documents.
+
+
+% One of the first things to note is that we cannot use functionality defined in packages
+%  until those packages are declared via \usagepackage[<PACKAGE OPTIONS>]{<PACKAGENAME>}
+%  so the first thing we do is import values from the options file and then the central file
+%  where all packages are defined.  However, this requires \documentclass to be defined.
+%  This is also why
+
+%
+% The options.tex file is the important file in the project, excluding all of the other
+%  most important files.
+%
+%
+
+% Load our primary options file (options.tex), which sets up our initial set of commands and variables.
+%  You will see that we are not using \subimport{} for this as we do later.  This is
+% due to the fact that the \subimport call only becomes available when packages are loaded.
+%
+%
+%
+%
+\input{options}
+
+% Confiure the document with the style options
+%  noted above.  Place them here for when we are changing
+%  the document they are easier to swap in and out and
+%  at the top of the document.
+\documentclass[\documentclassoptions]{apa7}
+
+% Load a file named packages.tex which contains a list of
+%  packages that add functionality and new tools to our
+%  base LaTeX setup - this is the stuff that makes LaTeX go
+%  from "Eh" to "Ah! Sweet mystery of life, At last I've found thee"
+\input{packages}
+
+\begin{comment}
+Import options files (in order) any previously declared option/command
+ is replaced with a matching one from lower in this subimport list.
+ This gives us, like many other designs patterns here to keep our global
+ structure clean by siloing but also to maximize our over-engineering.
+\end{comment}
+
+% import options (variables and new commands) at source level.
+\subimport{\sourceid}{options}
+% import options (variables and new commands) at subject level.
+\subimport{\sourceid/\subjectid}{options}
+% import options (variables and new commands) at project level.
+\subimport{\sourceid/\subjectid/\projectid}{options}
+
+\begin{comment}
+Document modes (stu, man, jou, doc) have different sets of required features/calls/variables/settings.
+ For example student works require the \course{} value but
+ journal articles do not and the document compilation may throw an error if that field is present/absent
+ Using a subimport based on the document mode allows us to read in fields and set values specific
+ to what that type of document needs but others may not.
+ This is identical to the above but a bit of clarity to show why this subimport
+ is important beyond its role in over-engineering a simple document environment.
+\end{comment}
+
+
+\subimport{\sourceid/\subjectid/\projectid/\documentmode}{options}
+
+\begin{comment}
+BibTeX bibliography/citation files.  These hold references that are called via
+ various \cite-style commands (see the APA7 package documentation for APA7 types).
+ 80of the time I'd just shove them into the top level .bib file and the rest of the
+ time I'd put them into a lower .bib file but only because I'd opened the wrong file.
+\end{comment}
+
+\addbibresource{default.bib}
+\addbibresource{\sourceid/default.bib}
+\addbibresource{\sourceid/\subjectid/default.bib}
+\addbibresource{\sourceid/\subjectid/\projectid/default.bib}
+
+\begin{comment}
+makeindex creates the .idx files for an index (often found at the back of books)
+ The index is not generated until a \printindex is called at the location where
+ the final index should be inserted in the document.
+Note: an external program (makeindex on Linux-based systems) has to be run in
+ order to generatet the actual index from the document's code.
+
+If indexgen is set to true (default is set in various options.tex) then build the index.
+\end{comment}
+
+\ifthenelse{\equal{\indexgen}{true}}{\makeindex}
+
+\begin{comment}
+This is where the actual document + document content begins, I think.
+ There is some wuju about what can/must go before or after this point
+ and if a document build errors out for this, just swap it above or below.
+\end{comment}
+
+\begin{document}
+
+\begin{comment}
+subimport is a useful command to allow for documents
+ including files by relative instad of absolute paths (e.g., /here/is/our/document.tex vs our/document.tex)
+
+In this case we are using the \sourceid variable set above as part of our path relative path
+ which allows us to quickly switch our paths to different document 'trees' while in the same environment.
+
+The source (sourceid) is the largest shell surrounding units of our environment.  The sourceid
+ can be on the scale of a company, college program, or a secret society.
+\end{comment}
+
+\subimport{\sourceid}{default}
+
+\begin{comment}
+If indexgen is set (default is in options.tex) then print the index
+\end{comment}
+
+
+\ifthenelse{\equal{\indexgen}{true}}{\printindex}
+
+\begin{comment}
+If listoffiguresgen is set (default is in options.tex) then add the list of figures option
+\end{comment}
+
+\ifthenelse{\equal{\listfiggen}{true}}{\listoffigures}
+
+\begin{comment}
+Be able to turn off creation of bibliographies - perhaps save paper during proof printing.
+\end{comment}
+
+\ifthenelse{\equal{\bibliogen}{true}}{\printbibliography}
+
+\end{document}

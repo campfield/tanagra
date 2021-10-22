@@ -1,0 +1,41 @@
+%
+%
+%
+
+\renewcommand{\sectioncurrent}{Citations}
+\sectionheader{\sectioncurrent}
+
+\subsection{Citation Requirements}
+\index{Citation!Requirements}
+
+\subsection{Quotations}
+\index{Quotations!Methods}
+
+\subsubsection{Quotation Examples}
+\index{Quotations!Examples}
+
+%
+% Outside of the toplevel default.tex which contains the document
+%  outer wrapper this is the actual location of the bulk of the
+%  document content.
+%
+According to \maskTextcite{dobbs_1987} in this block quote made of libsum:
+%
+% Note the \newline and the empty line, both needed to actually get a space
+%  line in the document.  This is likely the wrong way to do this.
+%
+\begin{quote}
+  \lipsum[1][2-5]\newline
+
+  \lipsum[1][6-8]
+\end{quote}
+
+Unfortunately, the above work did not maintain relevance after the research documented by \maskTextcite{pulsed_power_bluhm_2006} who
+identified that in the face of mounting pressure:
+
+\begin{quote}
+
+  \lipsum[2]
+
+\end{quote}
+

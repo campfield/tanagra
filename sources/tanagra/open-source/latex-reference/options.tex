@@ -1,0 +1,31 @@
+%
+% projectid level options and commands
+%
+
+% Set the APA style to standard document.
+%  This also includes elements in ./doc/default.tex that flip on other flags (such as set make indexes on)
+%\renewcommand{\documentmode}{doc}
+
+\renewcommand{\dockeywords}{LaTeX, BibTeX, example, template, Illuminati, APA, APA7, style}
+
+% Make an title and use case handling to uppercase the subject
+% NOTE: Intresting discovery, MakeUppercase creating a variable creates issues when
+%  that variable is used in features such as substring manipulation
+%\renewcommand{\fulltitle}{\MakeUppercase{tanagra}: \projectid [\documentmode]}
+\renewcommand{\fulltitle}{tanagra: \projectid [\documentmode]}
+
+%
+% Create new counter objects for providing, sections, figures, quotes,
+%  etc where they automagically renumber when documents are reordered or
+%  values are changed.
+%
+\newcounter{countersection}
+\setcounter{countersection}{0}
+
+%
+% This is a way to increment a counter: [countersection]
+%
+% \stepcounter{countersection}
+
+% This counter "resets" when a new section is begun.
+\newcounter{figurecounter}[section]

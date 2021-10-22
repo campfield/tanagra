@@ -1,0 +1,207 @@
+
+%
+% Packages are components that add functionality to base LaTeX
+%  These packages are generally kept in a CTAN archive.
+%  If you are using a LaTeX environment such as MiKTeX,
+%  https://miktex.org/, you can install these packages
+%  via that distribution's management console
+%
+
+%
+%  This package allows for rendering markdown inside of LaTeX
+%
+% https://ctan.org/pkg/markdown
+\usepackage[smartEllipses]{markdown}
+
+%
+%  This package allows you for if/else statements
+%   so you can do things like if \value == 'word' then \ping
+%   else \pong
+%
+% https://ctan.org/pkg/xifthen
+\usepackage{xifthen}
+
+%
+% Insert QR codes into documents.
+%
+% https://ctan.org/pkg/qrcode
+\usepackage{qrcode}
+
+
+%
+% Create inline bib. entries for annotated bibs. etc.
+%
+% https://ctan.org/pkg/bibentry
+\usepackage{bibentry}
+
+%
+% Allows you to do relative-path include/inserts of other files
+%  relative to the calling file.
+%
+% https://ctan.org/pkg/import
+\usepackage{import}
+
+%
+% Table management enhancements
+%
+% https://ctan.org/pkg/booktabs
+\usepackage{booktabs} % Top and bottom rules for tables
+
+%
+% Create document indexes
+%
+% https://ctan.org/pkg/makeidx
+\usepackage{makeidx}
+
+%
+% Create files from within a LaTeX file
+%  that can be used by the same LaTeX builds
+%  an example use is to directly inline write
+%  a .bib file, load that file, and use its
+%  contents as a citation source.
+%
+% https://ctan.org/pkg/filecontents
+\usepackage{filecontents}
+
+%
+% Add block style comments (hidden during
+%  document compilation)
+%
+% https://ctan.org/pkg/comment
+\usepackage{comment}
+
+%
+% Load information about the files
+%  being utilized/rendered
+%
+% https://ctan.org/pkg/currfile
+\usepackage{currfile}
+
+%
+% String manipulation tools such as regex
+%
+% https://ctan.org/pkg/stringstrings
+\usepackage{stringstrings}
+
+%
+% String manipulation tools
+%
+% https://ctan.org/pkg/colophon
+\usepackage{colophon}
+
+%
+% String manipulation tools
+%
+% https://ctan.org/pkg/xstring
+\usepackage{xstring}
+
+%
+% figure animation management for digital
+%  outputs (PDFs)
+%
+% https://ctan.org/pkg/animate
+\usepackage{animate}
+
+%
+% Color manipulation and features
+%
+% https://ctan.org/pkg/xcolor
+\usepackage{xcolor}
+
+%
+% Context sensitive quotations
+%
+% https://ctan.org/pkg/csquotes
+\usepackage{csquotes}
+
+%
+% table cell manipulation (carriage returns in cells)
+%
+% https://ctan.org/pkg/makecell
+\usepackage{makecell}
+
+%
+% Bibliography management
+%
+% https://ctan.org/pkg/biblatex
+\usepackage[\biblatexoptions]{biblatex}
+
+%
+% Date, time, timezone formatting
+%
+% https://ctan.org/pkg/datetime2
+\usepackage[\datetimeargs]{datetime2}
+
+%
+% options for coloring tables (such as specific cells)
+%
+% https://ctan.org/pkg/colortbl
+\usepackage{colortbl}
+
+%
+% tables with options such as scaling to page width
+%
+% https://ctan.org/pkg/tabularx
+\usepackage{tabularx}
+
+%
+% Allows use of Lorum ipsum typesetting placeholder text.
+%  https://en.wikipedia.org/wiki/Lorem_ipsum
+%
+% https://ctan.org/pkg/lipsum
+\usepackage{lipsum}
+
+%
+% multilingual support
+%  Wingardium LaTeXosa!
+%
+% https://ctan.org/pkg/babel
+\usepackage[\babelargs]{babel}
+
+%
+% Adding better support for captions
+%
+% https://ctan.org/pkg/caption
+\usepackage{caption}
+
+%
+% Options for floating object such as tables
+%  and images/figures.
+%
+% https://ctan.org/pkg/float
+\usepackage{float}
+
+%
+% Better graphics support with extended
+%  sets of options
+% https://ctan.org/pkg/graphicx
+\usepackage{graphicx}
+
+%
+% Hypertex + links in documents
+%
+% https://ctan.org/pkg/hyperref
+\usepackage{hyperref}
+
+%
+% Adds functionality for modifying
+%   text for strikethrough
+% https://ctan.org/pkg/ulem
+%
+\usepackage{ulem}
+
+%
+% ensure package is loaded at start of processing
+%
+\RequirePackage{currfile}
+
+% using xcolor we define a set if colors that
+%  can be used for actions such as adding colors
+%  to individual table cells.
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{bananamania}{rgb}{0.98, 0.91, 0.71}
+\definecolor{burlywood}{rgb}{0.87, 0.72, 0.53}
+\definecolor{darkorange}{rgb}{1.0, 0.55, 0.0}
+\definecolor{grannysmithapple}{rgb}{0.66, 0.89, 0.63}
+\definecolor{heliotrope}{rgb}{0.87, 0.45, 1.0}
+\definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
