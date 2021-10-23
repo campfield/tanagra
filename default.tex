@@ -19,13 +19,17 @@
 %
 %
 
+%
 % Load our primary options file (options.tex), which sets up our initial set of commands and variables.
 %  You will see that we are not using \subimport{} for this as we do later.  This is
 % due to the fact that the \subimport call only becomes available when packages are loaded.
 %
+% Each directory that contains a default.tex file will also include a options.tex file loaded at that
+%  level.  Previously declared option/commands are replaced with a matching one from
+%  lower in this subimport sequence.  This gives us, like many other designs patterns here to
+%  keep our global structure clean by siloing but also to maximize our over-engineering.
 %
-%
-%
+
 \input{options}
 
 % Confiure the document with the style options
@@ -40,19 +44,6 @@
 %  from "Eh" to "Ah! Sweet mystery of life, At last I've found thee"
 \input{packages}
 
-\begin{comment}
-Import options files (in order) any previously declared option/command
- is replaced with a matching one from lower in this subimport list.
- This gives us, like many other designs patterns here to keep our global
- structure clean by siloing but also to maximize our over-engineering.
-\end{comment}
-
-% import options (variables and new commands) at source level.
-\subimport{\sourceid}{options}
-% import options (variables and new commands) at subject level.
-\subimport{\sourceid/\subjectid}{options}
-% import options (variables and new commands) at project level.
-\subimport{\sourceid/\subjectid/\projectid}{options}
 
 \begin{comment}
 Document modes (stu, man, jou, doc) have different sets of required features/calls/variables/settings.
