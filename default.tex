@@ -44,6 +44,19 @@
 %  from "Eh" to "Ah! Sweet mystery of life, At last I've found thee"
 \input{packages}
 
+% hypersetup will highlight URLs and Bib citations in PDFs which isn't Kosher
+%  for school submitted papers.  Because packages is included after options, this
+%  configuration is crammed here.
+\hypersetup{nolinks=true}
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=blue,
+%    filecolor=magenta,
+%    urlcolor=cyan,
+%    pdftitle={Overleaf Example},
+%    pdfpagemode=FullScreen,
+%}
+
 
 \begin{comment}
 Document modes (stu, man, jou, doc) have different sets of required features/calls/variables/settings.
@@ -56,13 +69,19 @@ Document modes (stu, man, jou, doc) have different sets of required features/cal
 \end{comment}
 
 
-\subimport{\sourceid/\subjectid/\projectid/\documentmode}{options}
-
 \begin{comment}
 BibTeX bibliography/citation files.  These hold references that are called via
  various \cite-style commands (see the APA7 package documentation for APA7 types).
  80of the time I'd just shove them into the top level .bib file and the rest of the
  time I'd put them into a lower .bib file but only because I'd opened the wrong file.
+
+ This pre-loading of BibTeX files may seem out of place, however, bib files they need
+ to be added in the preamble.
+
+ TODO: find base path of this file, set as variable, in lower level files copy to root
+  directory then include them as default bib files.  They may need an inital copy "touched"
+  in that directory, however this may not work at all.
+
 \end{comment}
 
 \addbibresource{default.bib}
@@ -120,6 +139,7 @@ If listoffiguresgen is set (default is in options.tex) then add the list of figu
 Be able to turn off creation of bibliographies - perhaps save paper during proof printing.
 \end{comment}
 
-\ifthenelse{\equal{\bibliogen}{true}}{\printbibliography}
+% normalem as specified here takes care of long titles not being word wrapped in bibliographies.
+\ifthenelse{\equal{\bibliogen}{true}}{\normalem\printbibliography}
 
 \end{document}
