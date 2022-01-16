@@ -8,3 +8,28 @@
 \subsection{Examples}
 \index{\sectioncurrent!Examples}
 
+
+\begin{comment}
+Figures - have location overrides
+h - here - same location as call
+t - top - insert at top of page
+b - bottom - bottom of page
+p - page - on an extra page
+! - override - will force the specified location bypassing LaTeX's own overrides
+\end{comment}
+
+
+\begin{figure}
+    \includegraphics{../figures/350x150.png}
+    \caption{A placeholder image of [350x150].}
+    \label{fig:placeholder0}
+\end{figure}
+
+The \textbf{linewidth} option sets "expand this figure to the page width."
+\begin{figure}
+  \includegraphics[width=\linewidth]{../figures/350x150.png}
+  \caption{A placeholder image of [350x150].}
+  \label{fig:placeholder1}
+\end{figure}
+
+Figure \ref{fig:placeholder1} shows a placeholder image with the linewidth option.

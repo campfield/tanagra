@@ -47,6 +47,7 @@
 \newcommand{\projectid}{}
 \newcommand{\sectioncurrent}{}
 \newcommand{\sectionheader}{}
+\newcommand{\subsectionheader}{}
 \newcommand{\sourceid}{}
 \newcommand{\titlegen}{}
 
@@ -59,12 +60,21 @@
 %
 % Show us first defining documents under our project sources.
 %
-\renewcommand{\sourceid}{sources/projects}
-\renewcommand{\subjectid}{research}
-\renewcommand{\projectid}{readers-advisory-cataloging}
 
 % Swap out our previous sourcid++ to build this project's
 %   documents
+\renewcommand{\sourceid}{sources/tanagra}
+\renewcommand{\subjectid}{open-source}
+\renewcommand{\projectid}{latex-reference}
+
+\renewcommand{\sourceid}{sources/lis}
+\renewcommand{\subjectid}{s506-research}
+\renewcommand{\projectid}{00-undef}
+
+\renewcommand{\sourceid}{sources/lis}
+\renewcommand{\subjectid}{s552-academic-lib-mgmt}
+\renewcommand{\projectid}{00-undef}
+
 \renewcommand{\sourceid}{sources/tanagra}
 \renewcommand{\subjectid}{open-source}
 \renewcommand{\projectid}{latex-reference}
@@ -110,6 +120,7 @@
 %   the value of the counter
 %
 \renewcommand{\sectionheader}[1]{\stepcounter{countersection}\section{Section \arabic{countersection}: #1}}
+\renewcommand{\subsectionheader}[1]{\stepcounter{countersubsection}\subsection{Subsection\arabic{countersubsection}: #1}}
 
 %
 % Here we set several of the document style options such as font size.
@@ -155,15 +166,3 @@
 \setcounter{counterlibsum}{1}
 \renewcommand{\libshort}{\lipsum[\arabic{counterlibsum}][1-10]\stepcounter{counterlibsum}}
 
-%
-% Setup for hyperlinks/URLs in documents that support them (e.g., PDF).
-%
-%
-%\hypersetup{
-%    colorlinks=true,
-%    linkcolor=blue,
-%    filecolor=magenta,
-%    urlcolor=cyan,
-%    pdftitle={Overleaf Example},
-%    pdfpagemode=FullScreen,
-%}
