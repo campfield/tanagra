@@ -41,55 +41,30 @@
 \newcommand{\email}{}
 \newcommand{\fillinline}{}
 \newcommand{\fulltitle}{}
+\newcommand{\hyperrefoptions}{}
 \newcommand{\indexgen}{}
 \newcommand{\libshort}{}
 \newcommand{\listfiggen}{}
+\newcommand{\orcidid}{}
+\newcommand{\phone}{}
 \newcommand{\projectid}{}
 \newcommand{\sectioncurrent}{}
 \newcommand{\sectionheader}{}
 \newcommand{\subsectionheader}{}
 \newcommand{\sourceid}{}
 \newcommand{\titlegen}{}
+\newcommand{\tablewrapwidth}{}
+
 
 
 % For documents involving a single author (such as most student works), lets set a
 %   that author's name at the top so we can use it everywhere and only override it
 %   as necessary.  For this example, lets pick someone notable in the community.
 \renewcommand{\authorname}{Michael P. Campfield}
+\renewcommand{\orcidid}{0000-0002-9708-2879}
 
-%
-% Show us first defining documents under our project sources.
-%
+\input{build-path}
 
-% Swap out our previous sourcid++ to build this project's
-%   documents
-\renewcommand{\sourceid}{sources/tanagra}
-\renewcommand{\subjectid}{open-source}
-\renewcommand{\projectid}{latex-reference}
-
-\renewcommand{\sourceid}{sources/lis}
-\renewcommand{\subjectid}{s506-research}
-\renewcommand{\projectid}{00-undef}
-
-\renewcommand{\sourceid}{sources/lis}
-\renewcommand{\subjectid}{s552-academic-lib-mgmt}
-\renewcommand{\projectid}{00-undef}
-
-\renewcommand{\sourceid}{sources/tanagra}
-\renewcommand{\subjectid}{open-source}
-\renewcommand{\projectid}{latex-reference}
-
-
-% the following variable sets the document's overall style.  The general format and features
-%   the document possesses (dual column, abstract pages, double vs. single spacing, etc)
-% jou - APA journal article format
-% man - formatted for submission to a journal
-% stu - student document format
-% doc - standard document
-\renewcommand{\documentmode}{jou}
-\renewcommand{\documentmode}{man}
-\renewcommand{\documentmode}{doc}
-\renewcommand{\documentmode}{stu}
 
 %
 % If indexgen is 'true' (no quotes) then call \printindex
@@ -119,10 +94,13 @@
 % Set a command that sets up a section header (not just \section) but includes the number of the section and increment
 %   the value of the counter
 %
+\newcounter{countersection}
+\setcounter{countersection}{0}
+
 \renewcommand{\sectionheader}[1]{\stepcounter{countersection}\section{Section \arabic{countersection}: #1}}
 \renewcommand{\subsectionheader}[1]{\stepcounter{countersubsection}\subsection{Subsection\arabic{countersubsection}: #1}}
 
-%
+%\ifthenelse{\equal{\documentmode}{stu}}{}{\shorttitle{\substring{\fulltitle}{1}{50}}}
 % Here we set several of the document style options such as font size.
 %  the full list of these options can be found in the
 %  package document PDF here: https://ctan.org/pkg/apa7
@@ -134,8 +112,13 @@
 %  into the final document.
 % floatsintext instructs LaTeX to render tables and graphics within the
 %  text instead at the end sections of the document.
+% makeidx is used for creating a front materials index.  You will likely want
+%  to be tagging items with index entry specifiers such as \index{Quotations!Methods}
 %
 \renewcommand{\documentclassoptions}{\documentmode,10pt,floatsintext,makeidx}
+
+% set the default hyperref option to pdftex
+%\renewcommand{\hyperrefoptions}{pdftex}
 
 %
 % BibLaTeX is a formatting tool for automagically processing

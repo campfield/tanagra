@@ -5,8 +5,6 @@
 #   commands for compiling the default document.
 #
 
-SCRIPT_LOCATION=$(dirname $0)
-
 
 if [[ -z $1 ]]; then
   FNAME='default'
@@ -14,21 +12,54 @@ else
   FNAME=$1
 fi
 
-#
-# In order to build indexes, bibliographies, etc the build items must
-#   be run several times to output the correct build data pieces that
-#   other softwares (below) can read and update.
-#
-pdflatex $FNAME
-biber $FNAME
-pdflatex $FNAME.tex
-makeindex $FNAME.idx
-pdflatex $FNAME.tex
+SCRIPT_DIR=$(dirname $0)
+
+IFS='.' read -ra SOURCE_FILE <<< "$FNAME"
+SOURCE_TEX="${SOURCE_FILE[0]}.tex"
+OUTPUT_AUX="${SOURCE_FILE[0]}.aux"
+OUTPUT_PDF="${SOURCE_FILE[0]}.pdf"
+OUTPUT_IDX="${SOURCE_FILE[0]}.idx"
+SCRATCH_DIR="/dev/shm/$USER/tanagra/${SOURCE_FILE[0]}"
+PDFLATEX_OPTIONS="-c-style-errors -output-directory=${SCRATCH_DIR} "
+BIBER_OPTIONS="--output-directory $SCRATCH_DIR --quiet"
+DELETE_COMMAND=
+PDF_VIEWER='evince'
+
+
+if [[ ! -z $(which trash 2>/dev/null) ]]; then
+  DELETE_COMMAND='trash'
+elif [[ ! -z $(which safe_rm 2>/dev/null) ]]; then
+  DELETE_COMMAND='safe_rm'
+else
+  DELETE_COMMAND='/bin/rm -f'
+fi
+if [[ ! -d $SCRATCH_DIR ]]; then
+  mkdir -p $SCRATCH_DIR || (echo "Unable to create [$SCRATCH_DIR], exiting."; exit)
+fi
+
+
+pdflatex $PDFLATEX_OPTIONS "$SCRIPT_DIR/$SOURCE_TEX"
+biber $BIBER_OPTIONS ${SOURCE_FILE[0]}
+pdflatex $PDFLATEX_OPTIONS "$SCRIPT_DIR/$SOURCE_TEX"
+makeindex "$SCRIPT_DIR/$SOURCE_TEX"
+pdflatex $PDFLATEX_OPTIONS "$SCRIPT_DIR/$SOURCE_TEX"
+
+
+if [[ -f "$SCRIPT_DIR/$OUTPUT_PDF" ]] && [[ "$SCRATCH_DIR/$OUTPUT_PDF" ]]; then
+  $DELETE_COMMAND "$SCRIPT_DIR/$OUTPUT_PDF"
+fi
+
+if [[ -f "$SCRATCH_DIR/$OUTPUT_PDF" ]]; then
+  mv -f "$SCRATCH_DIR/$OUTPUT_PDF" "$SCRIPT_DIR"
+fi
 
 
 #
 # This is just calling evince, a PDF reader, so I can view the final output.
 #
-if [[ -f $SCRIPT_LOCATION/$FNAME.pdf ]] && [[ ! -z $(which evince 2>/dev/null) ]]; then
-  evince $SCRIPT_LOCATION/$FNAME.pdf &
+if [[ -f "$SCRIPT_DIR/$FNAME.pdf" ]] && [[ ! -z $(which $PDF_VIEWER 2>/dev/null) ]]; then
+  $PDF_VIEWER $SCRIPT_DIR/$FNAME.pdf &
 fi
+
+echo find "$SCRIPT_DIR" -maxdepth 1 -type f -regex ".*\(aux\|bbl\|blg\|log\|nav\|out\|snm\|toc\|bcf\|ind\|ilg\|xml\)$" -exec $DELETE_COMMAND {} \;
+
