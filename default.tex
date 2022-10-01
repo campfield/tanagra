@@ -1,5 +1,3 @@
-
-
 % This document is built around the LaTeX APA7 documentclass.  This sets a series of
 %  default values, enables sets of options and commands, gives access to typographic
 %  features and functions, and assists with citation mechanisms, index generation, and
@@ -56,6 +54,26 @@
 %    pdftitle={Overleaf Example},
 %    pdfpagemode=FullScreen,
 %}
+
+% set parameters for inline code blocks from the listings package
+\lstset{
+  frame=tb,
+  language=LISP,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 
 
 \begin{comment}
@@ -141,5 +159,11 @@ Be able to turn off creation of bibliographies - perhaps save paper during proof
 
 % normalem as specified here takes care of long titles not being word wrapped in bibliographies.
 \ifthenelse{\equal{\bibliogen}{true}}{\normalem\printbibliography}
+
+%\begingroup
+%\let\clearpage\relax
+%\printbibliography
+%\endgroup
+
 
 \end{document}

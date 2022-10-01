@@ -6,12 +6,46 @@
 %  https://miktex.org/, you can install these packages
 %  via that distribution's management console
 %
+%\usepackage{bibentry}
+%\nobibliography*
+
+\usepackage{array,ragged2e}
+\usepackage{longtable}
 
 %
 %  This package allows for rendering markdown inside of LaTeX
 %
 % https://ctan.org/pkg/markdown
 \usepackage[smartEllipses]{markdown}
+%
+%  Insert random text of X length
+% https://ctan.org/pkg/markdown
+\usepackage{blindtext}
+
+%
+%  This package allows you to create postscript
+%   and pdf graphics within tex
+%
+% https://ctan.org/pkg/tikz
+\usepackage{tikz}
+
+%
+%  This package allows you for if/else statements
+%   so you can do things like if \value == 'word' then \ping
+%   else \pong
+%
+% https://ctan.org/pkg/listings
+\usepackage{listings}
+
+%
+%  This package enables a suite of
+%   postscript macros for doing things such as
+%   generating pie charts, grapics, tree
+%   diagrams, etc
+%
+% https://ctan.org/pkg/pstricks
+\usepackage{pstricks}
+
 
 %
 %  This package allows you for if/else statements
@@ -33,6 +67,13 @@
 %
 % https://ctan.org/pkg/bibentry
 \usepackage{bibentry}
+
+%
+% T1 Font encoding for using non 7-bit fonts
+%  and the Latin alphabet with diacritics
+%
+% https://ctan.org/pkg/bibentry
+%\usepackage[T1]{fontenc}
 
 %
 % Allows you to do relative-path include/inserts of other files
@@ -76,6 +117,16 @@
 %
 % https://ctan.org/pkg/currfile
 \usepackage{currfile}
+
+%
+% The verbatim package for inserting
+%  text as written but with the option
+%  of using latex commands.
+%
+% https://ctan.org/pkg/alltt
+\usepackage{alltt}
+
+
 
 %
 % String manipulation tools such as regex
@@ -189,7 +240,7 @@
 % Hypertex + links in documents
 %
 % https://ctan.org/pkg/hyperref
-\usepackage{hyperref}
+%\usepackage[\hyperrefoptions]{hyperref}
 
 %
 % Adds functionality for modifying
@@ -197,6 +248,28 @@
 % https://ctan.org/pkg/ulem
 %
 \usepackage{ulem}
+
+%
+% Custom page layout settings including
+%  auto-centering and auto-balancing
+% https://ctan.org/pkg/geometry
+%
+%\usepackage{geometry}
+
+%
+% Set global indent policies
+%
+% https://ctan.org/pkg/paredent
+%\usepackage{paredent}
+
+
+%
+% This package gives cross-referencing features including the
+%  little s-circle needed for my legal citations
+%
+% https://ctan.org/pkg/cleveref
+\usepackage{cleveref}
+
 
 %
 % ensure package is loaded at start of processing
@@ -213,3 +286,7 @@
 \definecolor{grannysmithapple}{rgb}{0.66, 0.89, 0.63}
 \definecolor{heliotrope}{rgb}{0.87, 0.45, 1.0}
 \definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
+
+
+
+\usetikzlibrary{shapes.misc,shadows}
