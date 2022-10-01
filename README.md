@@ -10,4 +10,4 @@ tanagra also counts as my 'scratch pad' for LaTeX and BibTex - generally if I'm 
 
 Currently, the best documentation is in the .tex and .bib files themselves and that itself is woefully lacking.  Self-documenting-document-documentation?
 
--- LaTeX and BibTex at Tanagra.
+-- LaTeX and BibTeX at Tanagra.
